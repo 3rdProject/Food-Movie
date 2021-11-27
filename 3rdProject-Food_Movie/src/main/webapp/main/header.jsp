@@ -24,17 +24,21 @@
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">booking</a>
                   </li>
+                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Location</a>
+                  </li>
                 </ul>
               </li>
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Movie</a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/movie_list.do" data-toggle="dropdown">list</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/movie_list.do" data-toggle="dropdown">List</a>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Search</a>
                   </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Location</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">MovieChart</a>
                   </li>
                 </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">News</a>
               </li>
             </ul>
           </div>
