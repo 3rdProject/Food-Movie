@@ -22,9 +22,10 @@ public class FoodVO {
 	private int no,rno;
 	private String poster,rname;
 	private double score;
-	private String addr,tel,rtype,price,parking,openhousr,menu;
+	private String addr,tel,rtype,price,parking,openhour,menu;
 	private int good,soso,bad;
 	private String rtag;
+	
 	public int getNo() {
 		return no;
 	}
@@ -85,11 +86,11 @@ public class FoodVO {
 	public void setParking(String parking) {
 		this.parking = parking;
 	}
-	public String getOpenhousr() {
-		return openhousr;
+	public String getOpenhour() {
+		return openhour;
 	}
-	public void setOpenhousr(String openhousr) {
-		this.openhousr = openhousr;
+	public void setOpenhousr(String openhour) {
+		this.openhour = openhour;
 	}
 	public String getMenu() {
 		return menu;
