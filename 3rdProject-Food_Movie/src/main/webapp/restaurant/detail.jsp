@@ -116,9 +116,9 @@
             <div class="col-sm-6 col-md-3 col-lg-3">
               <div class="content-box">
                 <div class="content-box-image">
-				  <img :src="vo.poster" v-on:click="rest_detail(vo.no,vo.addr)" class="image">
+				  <img :src="vo.poster">
                 </div>
-                <h3 class="content-box-title font-serif" v-on:click="food_detail(vo.no,vo.addr)">{{rname}}&nbsp;<span style="color:orange">{{score}}</span></h3>
+                <h3 class="content-box-title font-serif">{{rname}}&nbsp;<span style="color:orange">{{score}}</span></h3>
               </div>
             </div>
         </div>
@@ -126,48 +126,38 @@
     </section>
   </div>
   <script>
-    new Vue({
-    	el:'.container',
-    	data:{
-    		detail.data:{},
-    		rno:${rno},
-    		cate_info:{},
-    		cate_list:[],
-    		isShow:false
-    	},
-    	mounted:function(){
-    		let _this=this;
-    		axios.get("http://localhost:8080/web/restaurant/rest_detail.do",{
-    			params:{
-    				rno:_this.rno
-    			}
-    		}).then(function(response){
-    			_this.cate_list=response.data;
-    		})
-    		
-    		axios.get("http://localhost:8080/web/restaurant/rest_info.do",{
-    			params:{
-    				rno:_this.rno
-    			}
-    		}).then(function(response){
-    			_this.cate_info=response.data;
-    		})
-    	},
-    	methods:{
-    		rest_detail:function(no,addr){
-    			this.isShow=true;
-    			let _this=this;
-    			axios.get("http://localhost:8080/web/restaurant/rest_detail2.do",{
-    				params:{
-    					no:no
-    				}
-    			}).then(function(response){
-    				console.log(response.data);
-    				_this.detail_data=response.data
-    			})
-    		}
-    	}
-    })
+  new Vue({
+  	el:'.main',
+  	data:{
+  		detail_data:{},
+  		no:${no}
+  	},
+  	mounted:function(){
+  		axios.get("http://localhost:8080/web/restaurant/rest_detail.do",{
+  			params:{
+  				no:this.no
+  			}
+  		}).then(response=>{
+  			console.log(response.data);
+  			this.detail_data=response.data;
+  		})
+  	},
+  	methods:{
+  		change:function(no){
+  			this.no=no;
+  			axios.get("http://localhost:8080/web/restaurant/rest_detail.do",{
+  				params:{
+  					no:this.no
+  					
+  				}
+  			}).then(response=>{
+  				console.log(response.data);
+  				this.detail_data=response.data;
+
+  			})
+  		}
+  	}
+  })
   </script>
 </body>
 </html>

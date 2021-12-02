@@ -15,6 +15,15 @@ public class FoodDAO {
 		return mapper.foodSelectData(map);
 	}
 	
+	public List<FoodVO> foodListData(int rno)
+	{
+		return mapper.foodListData(rno);
+	}
+	
+	public int foodTotal()
+	{
+		return mapper.foodTotal();
+	}
 	
 	public FoodVO categorySelectData(int rno)
 	{

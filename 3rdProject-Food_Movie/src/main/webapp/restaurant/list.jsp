@@ -70,8 +70,18 @@
           </div>
           <hr>
           <div class="row multi-columns-row">
-            <div class="col-sm-6 col-md-3 col-lg-3" v-for="vo in cate_data">
-              <div class="content-box">
+            <div class="col-sm-6 col-md-3 col-lg-3" v-for="(vo,index) in cate_data">
+              <div class="content-box" v-if="index%4==0">
+                <div class="content-box-image">
+                  <a :href="'../restaurant/detail.do?no='+vo.no">
+                    <img :src="vo.poster" :title="vo.rname">
+                    <div class="caption">
+                      <p>{{vo.rname}}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="content-box" v-if="index%4!=0">
                 <div class="content-box-image">
                   <a :href="'../restaurant/detail.do?no='+vo.no">
                     <img :src="vo.poster" :title="vo.rname">
@@ -83,6 +93,14 @@
               </div>
             </div>
           </div>
+   <div class="row">
+     <div class="text-center">
+       <button class="btn btn-sm btn-danger" v-on:click="prev()">이전</button>
+       <%-- onclick  v-on:mouseover="" v-on:change="" --%>
+         {{curpage}} page / {{totalpage}} pages
+       <button class="btn btn-sm btn-danger" v-on:click="next()">다음</button>
+     </div>
+   </div>
         </div>  
       </section>
     </div>
@@ -92,32 +110,77 @@
   	el:'.main',
   	data:{
   		rno:1,
-  		cate_data:[]
+  		cate_data:[],
+  		curpage:1,
+  		totalpage:0
   	},
   	mounted:function(){
-  		axios.get("http://localhost:8080/web/restaurant/rest_list.do",{
+  		axios.get("http://localhost/web/restaurant/rest_list.do",{
   			params:{
+  				page:this.curpage,
   				rno:this.rno
   			}
   		}).then(response=>{
   			console.log(response.data);
   			this.cate_data=response.data;
+  			this.curpage=this.cate_data[0].curpage;
+  			this.totalpage=this.cate_data[0].totalpage;
   		})
   	},
   	methods:{
   		change:function(rno){
   			this.rno=rno;
-  			axios.get("http://localhost:8080/web/restaurant/rest_list.do",{
+  			this.curpage=1;
+  			axios.get("http://localhost/web/restaurant/rest_list.do",{
   				params:{
-  					rno:this.rno
-  					
+  					rno:this.rno,
+  					page:this.curpage
   				}
   			}).then(response=>{
   				console.log(response.data);
   				this.cate_data=response.data;
+  				this.curpage=this.cate_data[0].curpage;
+  	  			this.totalpage=this.cate_data[0].totalpage;
 
   			})
-  		}
+  		},
+		   prev:function(){
+			   this.curpage=this.curpage>1?this.curpage-1:this.curpage;
+			   axios.get("http://localhost/web/restaurant/rest_list.do",{
+				   params:{
+					   page:this.curpage,
+					   rno:this.rno
+				   }
+			   }).then(response=>{
+				   this.cate_data=response.data;
+				   //this.curpage=this.cate_date[0].curpage;
+	  	  			//this.totalpage=this.cate_data[0].totalpage;
+			   })
+		   },
+		   // 다음 버튼
+		   /*
+		        function display(){}
+		        let display:function(){}
+		        let display=>{}
+		                  ===
+		                	  함수 포인터 (람다식)
+		   */
+		   next:function(){
+			   this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage;
+			   axios.get("http://localhost/web/restaurant/rest_list.do",{
+				   params:{
+					   page:this.curpage,
+					   rno:this.rno
+				   }
+			      // .then(function(response)) success:function(res)
+			      // 화살표 => (function / return을 사용하지 않는 경우 )
+			      // => this가 본인 (Vue) , function(response) => this(axios)
+			   }).then(response=>{
+				   this.cate_data=response.data;
+				   //this.curpage=this.cate_date[0].curpage;
+	  	  			//this.totalpage=this.cate_data[0].totalpage;
+			   })
+		   }
   	}
   })
   </script>

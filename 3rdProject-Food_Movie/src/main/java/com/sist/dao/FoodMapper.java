@@ -13,20 +13,29 @@ public interface FoodMapper {
 			+"FROM trip_r "
 			+"WHERE "
 			+"<if test='rno==1'>"
-			+"no BETWEEN 1 AND 200"
+			+"no BETWEEN #{start} AND #{end}"
 			+"</if>"
 			+"<if test='rno==2'>"
-			+"no BETWEEN 201 AND 5000"
+			+"no BETWEEN #{start} AND #{end}"
 			+"</if>"
 			+"</script>"})
 	public List<FoodVO> foodSelectData(Map map);
+	
+	@Select("SELECT no,rno,poster,rname,score "
+			+"FROM trip_r "
+			+"WHERE rno=#{rno}")
+	public List<FoodVO> foodListData(int rno);
+	
+	@Select("SELECT COUNT(*) FROM trip_r")
+	public int foodTotal();
 	
 	@Select("SELECT no,rname,score,poster "
 			+"FROM trip_r "
 			+"WHERE rno=#{rno}")
 	public FoodVO categorySelectData(int rno);
 	
-	@Select("SELECT CEIL(COUNT(*)/8.0) FROM trip_r")
+	@Select("SELECT CEIL(COUNT(*)/12.0) FROM trip_r "
+			+"WHERE rno=#{rno}")
 	public int foodTotalPage(int rno);
 	
 	@Select("SELECT rname,score "
@@ -34,9 +43,9 @@ public interface FoodMapper {
 			+"WHERE rno=#{rno}")
 	public FoodVO categoryInfoData(int rno);
 	
-	@Select("SELECT no,rname,addr,tel,rtype,poster "
+	@Select("SELECT * "
 			+"FROM trip_r "
-			+"WHERE rno=#{rno}")
+			+"WHERE no=#{rno}")
 	public List<FoodVO> categoryFoodData(int rno);
 	
 	@Select("SELECT * FROM trip_r "
