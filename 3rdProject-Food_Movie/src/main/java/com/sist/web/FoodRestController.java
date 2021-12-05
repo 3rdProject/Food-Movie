@@ -69,13 +69,13 @@ public class FoodRestController {
 	}
 	
 	@GetMapping(value="restaurant/rest_detail.do",produces="text/plain;charset=UTF-8")
-	public String rest_detail(int rno)
+	public String rest_detail(int no)
 	{
 		String json="";
 		try
 		{
 			JSONArray arr=new JSONArray();
-			List<FoodVO> list=dao.categoryFoodData(rno);
+			List<FoodVO> list=dao.foodDetailData(no);
 			//List<FoodVO> list=dao.foodDetailData(no);
 			for(FoodVO vo:list)
 			{
@@ -102,49 +102,6 @@ public class FoodRestController {
 		}catch(Exception ex) {}
 		return json;
 	}
-	
-	@RequestMapping(value="restaurant/rest_info.do",produces="text/plain;charset=UTF-8")
-	public String rest_info(int rno)
-	{
-		String json="";
-		try
-		{
-			JSONObject obj=new JSONObject();
-			FoodVO vo=dao.categoryInfoData(rno);
-			obj.put("rname", vo.getRname());
-			obj.put("score", vo.getScore());
-			json=obj.toJSONString();
-		}catch(Exception ex) {}
-		return json;
-	}
-	
-	@RequestMapping(value="restaurant/rest_detail2.do",produces="text/plain;charset=UTF-8")
-	public String rest_detail2(int no)
-	{
-		String json="";
-		try
-		{
-			FoodVO vo=dao.foodDetailData(no);
-			JSONObject obj=new JSONObject();
-			obj.put("no", vo.getNo());
-			obj.put("rname", vo.getRname());
-			obj.put("poster", vo.getPoster());
-			obj.put("addr", vo.getAddr());
-			obj.put("tel", vo.getTel());
-			obj.put("openhour", vo.getOpenhour());
-			obj.put("parking", vo.getParking());
-			obj.put("rtype", vo.getRtype());
-			obj.put("menu", vo.getMenu());
-			obj.put("price", vo.getPrice());
-			obj.put("good", vo.getGood());
-			obj.put("soso", vo.getSoso());
-			obj.put("bad", vo.getBad());
-			obj.put("score", vo.getScore());
-			obj.put("rtag", vo.getRtag());
-			
-			json=obj.toJSONString();
-		}catch(Exception ex) {}
-		return json;
-	}
+
 
 }
