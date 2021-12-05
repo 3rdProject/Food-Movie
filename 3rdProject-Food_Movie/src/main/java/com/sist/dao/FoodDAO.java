@@ -45,7 +45,7 @@ public class FoodDAO {
 		return mapper.categoryFoodData(rno);
 	}
 	
-	public FoodVO foodDetailData(int no)
+	public List<FoodVO> foodDetailData(int no)
 	{
 		return mapper.foodDetailData(no);
 	}

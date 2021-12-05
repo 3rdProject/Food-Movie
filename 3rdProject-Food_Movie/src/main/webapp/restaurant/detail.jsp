@@ -129,11 +129,11 @@
   new Vue({
   	el:'.main',
   	data:{
-  		detail_data:{},
+  		detail_data:[],
   		no:${no}
   	},
   	mounted:function(){
-  		axios.get("http://localhost:8080/web/restaurant/rest_detail.do",{
+  		axios.get("http://localhost/web/restaurant/rest_detail.do",{
   			params:{
   				no:this.no
   			}
@@ -145,7 +145,7 @@
   	methods:{
   		change:function(no){
   			this.no=no;
-  			axios.get("http://localhost:8080/web/restaurant/rest_detail.do",{
+  			axios.get("http://localhost/web/restaurant/rest_detail.do",{
   				params:{
   					no:this.no
   					

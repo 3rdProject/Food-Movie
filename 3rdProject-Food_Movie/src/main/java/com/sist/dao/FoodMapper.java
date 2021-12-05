@@ -49,6 +49,6 @@ public interface FoodMapper {
 	public List<FoodVO> categoryFoodData(int rno);
 	
 	@Select("SELECT * FROM trip_r "
-			+"WHERE rno=#{no}")
-	public FoodVO foodDetailData(int no);
+			+"WHERE no=#{no}")
+	public List<FoodVO> foodDetailData(int no);
 }
