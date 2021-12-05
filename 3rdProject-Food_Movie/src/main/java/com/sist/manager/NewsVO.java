@@ -1,7 +1,15 @@
 package com.sist.manager;
 
 public class NewsVO {
-	private String title, description, author, link;
+	private String title, description, author, link, poster;
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
 	public String getTitle() {
 		return title;
