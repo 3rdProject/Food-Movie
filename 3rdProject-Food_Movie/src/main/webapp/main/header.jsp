@@ -18,7 +18,7 @@
               </li>
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Restaurant</a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">list</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../restaurant/list.do" data-toggle="dropdown">list</a>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">recommend</a>
                   </li>
@@ -30,15 +30,15 @@
               </li>
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Movie</a>
                 <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/movie_list.do" data-toggle="dropdown">List</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/list.do" data-toggle="dropdown">List</a>
                   </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Search</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/search.do" data-toggle="dropdown">Search</a>
                   </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">MovieChart</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../movie/chart.do" data-toggle="dropdown">MovieChart</a>
                   </li>
                 </ul>
               </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">News</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="../news/news_find.do" data-toggle="dropdown">News</a>
               </li>
             </ul>
           </div>
