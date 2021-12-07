@@ -53,27 +53,20 @@
           <div class="container">
             <div class="row mb-60">
                 <!-- <form method="get" action="../movie/search.do" role="form"> -->
-              <div class="col-sm-1">
-                  	<select name=fs class="input-sm">
-                  		<option value="TGDA">통합검색</option>
-                  		<option value="T">제목</option>
-                  		<option value="G">장르</option>
-                  		<option value="D">감독</option>
-                  		<option value="A">배우</option>
-                  	</select>
-              </div>
-              <div class="col-sm-7">
+              <div class="col-sm-8 col-sm-offset-2">
                   <div class="search-box">
-                    <input class="form-control" type="text" placeholder="Search..." v-model="ss">
+                    <input class="form-control" type="text" placeholder="검색어를 입력하세요" v-model="ss">
                     <button class="search-btn" type="submit" v-on:click="movieFind()"><i class="fa fa-search"></i></button>
                   </div>
               </div>
               <!-- </form> -->
             </div>
+            <p class="board_total">총<strong id="pageCount">&nbsp;{{total }}</strong>개의 영화가 있습니다.</p>
+            <div style="height:30px"></div>
             <div class="row post-masonry post-columns">
               <div class="col-sm-6 col-md-4 col-lg-4" v-for="vo in find_data">
                 <div class="post">
-                  <div class="post-thumbnail"><a href="'../movie/detail.do?no='+vo.mno"><img :src="vo.poster" alt="Blog-post Thumbnail"></a></div>
+                  <div class="post-thumbnail"><a href="'../movie/detail.do?no='+vo.mno"><img :src="vo.poster"  style="height:300px;width:200px" alt="Blog-post Thumbnail"></a></div>
                   <div class="post-header font-alt">
                     <h2 class="post-title"><a href="'../movie/detail.do?no='+vo.mno">{{vo.title}}</a></h2>
                     <div class="post-meta">By&nbsp;<a href="#">{{vo.director}}</a>&nbsp;| {{vo.regdate}} | {{vo.grade}}
@@ -82,7 +75,7 @@
                   <div class="post-entry">
                     <p>{{vo.actor}}</p>
                   </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+                  <div class="post-more"><a class="more-link" href="'../movie/detail.do?no='+vo.mno">Read more</a></div>
                 </div>
               </div>
             </div>
@@ -92,33 +85,33 @@
     </main>
   <script>
   	new Vue({
-  		el:'.module',
+  		el:'.main',
   		data:{
-  			find_data:[]
-  			ss:'',
-  			fs:'TGDA'
+  			find_data:[],
+  			total:'',
+  			ss:''
   		},
   		mounted:function(){
   			axios.get("http://localhost/web/movie/rest_search.do",{
   				params:{
-  					ss:this.ss,
-  					fs:this.fs
+  					ss:this.ss
   				}
   			}).then(res=>{
   				console.log(res);
   				this.find_data=res.data;
+  				this.total=this.find_data[0].total;
   			})
   		},
   		methods:{
   			movieFind:function(){
   				axios.get("http://localhost/web/movie/rest_search.do",{
   					params:{
-  						ss:this.ss,
-  						fs:this.fs
+  						ss:this.ss
   					}
   				}).then(res=>{
   					console.log(res);
   					this.find_data=res.data;
+  					this.total=this.find_data[0].total;
   				})
   			}
   		}

@@ -27,7 +27,7 @@ public class MovieController {
 		if(no==null)
 			no="1";
 		int mno=Integer.parseInt(no);
-		model.addAttribute("mno", mno);
+		model.addAttribute("no", mno);
 		model.addAttribute("main_jsp", "../movie/detail.jsp");
 		return "main/main";
 	}

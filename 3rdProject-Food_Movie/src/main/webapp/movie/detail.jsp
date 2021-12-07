@@ -54,15 +54,15 @@
             <div class="row">
               <div class="col-sm-12">
                 <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/Jkk0VHiCnKY" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                  <iframe class="embed-responsive-item" :src="'//www.youtube.com/embed/'+detail_data.key" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                 </div>
               </div>
             </div>
             <div style="height:50px"></div>
-            <div class="col-sm-6 col-md-8 col-lg-8"><img :src="detail_data.poster" alt="Title of Image"/></div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="col-md-3 col-lg-3"><img :src="detail_data.poster" alt="Title of Image" style="height:300px;width:240px"></div>
+              <div class="col-md-9 col-lg-9">
                 <div class="work-details">
-                  <h5 class="work-details-title font-alt">{{detail_data.title}}</h5>
+                  <h4 class="work-details-title font-alt">{{detail_data.title}}</h4>
                   <!-- <p>{{story}}</p> -->
                   <ul>
                     <li><strong>예매율: </strong><span class="font-serif"><a href="#" target="_blank">{{detail_data.hit}}</a></span>

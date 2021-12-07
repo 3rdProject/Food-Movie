@@ -70,19 +70,19 @@
                   <div class="post-entry">
                     <p>{{vo.actor}}</p>
                   </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+                  <div class="post-more"><a class="more-link" :href="'../movie/detail.do?no='+vo.mno">Read more</a></div>
                 </div>
               </div>
             </div>
-            <div class="pagination font-alt">
-            	<button class="fa fa-angle-left" v-on:click="prev()"><i class="fa fa-angle-left"></i></button>
-	            <a class="active" href="#">1</a>
-	            <a href="#">2</a>
-	            <a href="#">3</a>
-	            <a href="#">4</a>
-	            <button class="fa fa-angle-right" v-on:click="next()"><i class="fa fa-angle-right"></i></button>
-            </div>
           </div>
+			   <div class="row">
+			     <div class="text-center">
+			       <button class="btn btn-sm btn-danger" v-on:click="prev()">이전</button>
+			       <%-- onclick  v-on:mouseover="" v-on:change="" --%>
+			         {{curpage}} page / {{totalpage}} pages
+			       <button class="btn btn-sm btn-danger" v-on:click="next()">다음</button>
+			     </div>
+			   </div>
         </section>
       </div>
       <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
@@ -91,40 +91,39 @@
 	    		el:'.main',
 	    		data:{
 	    			m_data:[],
-	    			no:1,
+	    			cno:1,
 	    			curpage:1,
 	    			totalpage:0
 	    		},
 	    		mounted:function(){
 	    			axios.get("http://localhost/web/movie/rest_list.do",{
 	    				params:{
-	    					no:this.no,
+	    					cno:this.cno,
 	    					page:this.curpage
 	    				}
 	    			}).then(response=>{
 	    				console.log(response);
 	    				console.log(response.data);
 	    				this.m_data=response.data;
-	    				this.curpage=this.cate_data[0].curpage;
-	    	  			this.totalpage=this.cate_data[0].totalpage;
+	    				this.curpage=this.m_data[0].curpage;
+	    	  			this.totalpage=this.m_data[0].totalpage;
 	    			})
 	    		},
 	    		methods:{
-	    			change:function(no){
-	    				this.no=no;
+	    			change:function(cno){
+	    				this.cno=cno;
 	    				this.curpage=1;
-	    				let _this=this;
 	    				axios.get("http://localhost/web/movie/rest_list.do",{
 	    					params:{
-	    						no:this.no,
+	    						cno:this.cno,
 	    						page:this.curpage
 	    					}
 	    				}).then(response=>{
 	    					console.log(response.data);
-	    					_this.m_data=response.data;
+	    					this.m_data=response.data;
 	    					//this.m_data=response.data;
-	    					this.curpage=this.cate_data[0].curpage;
-	    	  	  			this.totalpage=this.cate_data[0].totalpage;
+	    					this.curpage=this.m_data[0].curpage;
+	    	  	  			this.totalpage=this.m_data[0].totalpage;
 	    				})
 	    			},
 	    			prev:function(){
@@ -132,10 +131,10 @@
 	    				axios.get("http://localhost/web/movie/rest_list.do",{
 	    					params:{
 	    						page:this.curpage,
-	    						no:this.no
+	    						cno:this.cno
 	    					}
 	    				}).then(response=>{
-	    					_this.m_data=response.data;
+	    					this.m_data=response.data;
 	    					//this.m_data=response.data;
 	    				})
 	    			},
@@ -144,11 +143,11 @@
 	    				axios.get("http://localhost/web/movie/rest_list.do",{
 	    					params:{
 	    						page:this.curpage,
-	    						no:this.no
+	    						cno:this.cno
 	    					}
 	    				}).then(response=>{
 	    					//this.m_data=response.data;
-	    					_this.m_data=response.data;
+	    					this.m_data=response.data;
 	    				})
 	    			}
 	    		}

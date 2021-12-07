@@ -25,24 +25,24 @@ public class MovieRestController {
 	
 	// 영화 목록
 	@RequestMapping(value="movie/rest_list.do", produces="text/plain;charset=UTF-8")
-	public String movie_list(String no, String spage)
+	public String movie_list(int cno, int page)
 	{
-		System.out.println("cno="+no);
+		System.out.println("cno="+cno);
 		String json="";
 		try
 		{
-			if(spage==null)
-				spage="1";
-			int page=Integer.parseInt(spage);
+//			if(spage==null)
+//				spage="1";
+//			int page=Integer.parseInt(spage);
 			
 			int curpage=page;
 			int rowSize=12;
 			int start=(rowSize*curpage)-(rowSize-1);
 			int end=(rowSize*curpage);
 			
-			if(no==null)
-				no="1";
-			int cno=Integer.parseInt(no);
+//			if(cno==null)
+//				cno="1";
+//			int no=Integer.parseInt(cno);
 			
 			Map map=new HashMap();
 			map.put("cno", cno);
@@ -65,10 +65,25 @@ public class MovieRestController {
 				JSONObject obj=new JSONObject();
 				obj.put("cno", vo.getCno());
 				obj.put("mno", vo.getMno());
-				obj.put("title", vo.getTitle());
-				obj.put("director", vo.getDirector());
+				String title=vo.getTitle();
+				if(title.length()>22)
+				{
+					title=title.substring(0,22)+"...";
+				}
+				obj.put("title", title);
+				String director=vo.getDirector();
+				if(director.length()>8)
+				{
+					director=director.substring(0,8)+"...";
+				}
+				obj.put("director", director);
 				obj.put("grade", vo.getGrade());
-				obj.put("actor", vo.getActor());
+				String actor=vo.getActor();
+				if(actor.length()>30)
+				{
+					actor=actor.substring(0,30)+"...";
+				}
+				obj.put("actor", actor);
 				obj.put("regdate", vo.getRegdate());
 				obj.put("genre", vo.getGenre());
 				obj.put("poster", vo.getPoster());
@@ -123,17 +138,23 @@ public class MovieRestController {
 	
 	// 영화 통합 검색
 	@GetMapping(value="movie/rest_search.do", produces="text/plain;charset=UTF-8")
-	public String movie_search(String[] fs, String ss)
+	public String movie_search(String ss)
 	{
 		String json="";
 		try
 		{
-			Map map=new HashMap();
-			map.put("fsArr", fs);
-			map.put("ss" , ss);
-			
-			List<MovieVO> list=dao.movieAllSearchData(map);
+//			Map map=new HashMap();
+//			map.put("fsArr", fs);
+//			for(String s:fs)
+//			{
+//				System.out.println(s);
+//			}
+//			map.put("ss" , ss);
+			int total=dao.searchTotal(ss);
+			List<MovieVO> list=dao.movieAllSearchData(ss);
+			System.out.println(ss);
 			JSONArray arr=new JSONArray();
+			int i=0;
 			// mno, title, poster, director, regdate, grade, actor
 			for(MovieVO vo:list)
 			{
@@ -145,7 +166,10 @@ public class MovieRestController {
 				obj.put("regdate", vo.getRegdate());
 				obj.put("grade", vo.getGrade());
 				obj.put("actor", vo.getActor());
+				if(i==0)
+					obj.put("total", total);
 				arr.add(obj);
+				i++;
 			}
 			json=arr.toJSONString();
 			

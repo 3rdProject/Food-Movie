@@ -30,6 +30,17 @@ public class MovieDAO {
 	}
 	
 	// 검색
+	public List<MovieVO> movieAllSearchData(String ss)
+	{
+		return mapper.movieAllSearchData(ss);
+	}
+	
+	public int searchTotal(String ss)
+	{
+		return mapper.searchTotal(ss);
+	}
+/*	
+	// 검색
 	// 전체 검색
 	public List<MovieVO> movieAllSearchData(Map map)
 	{
@@ -71,4 +82,5 @@ public class MovieDAO {
 	{
 		return mapper.movieActorTotalPage(actor);
 	}
+*/
 }
