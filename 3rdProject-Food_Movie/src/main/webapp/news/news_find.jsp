@@ -53,12 +53,12 @@
           <div class="container">
             <div class="row mb-60">
               <div class="col-sm-8 col-sm-offset-2">
-                <form role="form">
+                <!-- <form role="form"> -->
                   <div class="search-box">
                     <input class="form-control" type="text" placeholder="영화" v-model="ss">
                     <button class="search-btn" v-on:click="newsFind()"><i class="fa fa-search"></i></button>
                   </div>
-                </form>
+               <!--  </form> -->
               </div>
             </div>
 			    <div class="row">
