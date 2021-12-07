@@ -14,7 +14,7 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="../main/main.do" data-toggle="dropdown">Home</a>
               </li>
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Restaurant</a>
                 <ul class="dropdown-menu">
@@ -24,7 +24,7 @@
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">booking</a>
                   </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Location</a>
+                  <li class="dropdown"><a class="dropdown-toggle" href="../map/map_main.do" data-toggle="dropdown">Location</a>
                   </li>
                 </ul>
               </li>
